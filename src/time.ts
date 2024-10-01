@@ -191,6 +191,17 @@ export class CronTime {
 		return Math.max(-1, this.sendAt().toMillis() - DateTime.local().toMillis());
 	}
 
+	getTimeout2() {
+		let sendAtToMillis = this.sendAt().toMillis();
+		let localTimeToMillis = DateTime.local().toMillis();
+		return {
+			sendAtToMillis,
+			localTimeToMillis,
+			minus: sendAtToMillis - localTimeToMillis,
+			timeout: Math.max(-1, sendAtToMillis - localTimeToMillis)
+		};
+	}
+
 	/**
 	 * writes out a cron string
 	 */
