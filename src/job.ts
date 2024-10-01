@@ -214,7 +214,7 @@ export class CronJob<OC extends CronOnCompleteCommand | null = null, C = null> {
 		}
 
 		const MAXDELAY = 2147483647; // The maximum number of milliseconds setTimeout will wait.
-		let resultTimeout = this.cronTime.getTimeout2();
+		let resultTimeout:any = this.cronTime.getTimeout2();
 		let timeout = resultTimeout?.timeout;
 		let remaining = 0;
 		let startTime: number;
@@ -283,6 +283,7 @@ export class CronJob<OC extends CronOnCompleteCommand | null = null, C = null> {
 
 			setCronTimeout(timeout);
 		} else {
+			resultTimeout.cronTimeSource = this.cronTime.source
 			console.log('CRON STOP DEBUG: ', JSON.stringify(resultTimeout));
 			this.stop();
 		}
